@@ -37,9 +37,8 @@ def run(job, ids=None):
 
     #
     for index, task in task_s:
-
+        #
         print("- Running scoring task %s..." % (index+1))
-
         # Set up the input parameters of the task.
         input_dcd = task['input'][0]
         run_home = input_dcd.dirname()

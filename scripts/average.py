@@ -116,9 +116,9 @@ def run(job, n_init):
 def run_tasks(job, task_s):
 
     for index, task in task_s:
-
+        #
         print("- Running averaging task %s..." % (index+1))
-
+        #
         input_s = task['input']
         output_prefix = input_s[0]
         rule = input_s[1]

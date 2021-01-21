@@ -52,7 +52,7 @@ def get_stderr():
         return "/dev/null"
 
 def print_tasks_to_run_message(task_s, task_name):
-    return "- A total of %s %s tasks will be run."
+    print("- A total of %s %s tasks will be run." % (len(task_s), task_name))
 
 
 SUBMIT_MAX_PROC = 64

@@ -94,14 +94,12 @@ def run_tasks(job, task_s):
     """
     #
     for index, task in task_s:
+        #
         print("- Running equilibration task %s..." % (index+1))
-
         #
         run_home = task['input'][0]
         input_pdb  = task['input'][1]
         input_json = task['input'][-1]
-        #
-        print("")
         #
         if job["is_membrane_protein"]:
             # is_membrane = True
