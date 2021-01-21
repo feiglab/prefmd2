@@ -1,0 +1,34 @@
+{
+  "ff": {
+    "use_modified_CMAP": true,
+    "toppar": [
+      "ff/c36m.CMAPmod.hv/c36m_ecmap.prm",
+      "ff/c36m.CMAPmod.hv/c36m_ecmap.rtf",
+      "ff/c36m.CMAPmod.hv/toppar_water_ions.str",
+      "ff/c36m.CMAPmod.hv/toppar_ions_won.str"
+    ],
+    "cgenff": [
+      "ff/cgenff.hv/top_all36_cgenff.rtf",
+      "ff/cgenff.hv/par_all36_cgenff.prm"
+    ]
+  },
+  "openmm": {
+    "platform": null
+  },
+  "md": {
+    "dyntstep": 0.002,
+    "dyntemp": 360.0,
+    "lang": true,
+    "langfbeta": 0.01,
+    "ion_conc": 0.0,
+    "solvate": 9.0,
+    "heat": [
+      20000,
+      50.0,
+      25.0
+    ],
+    "equil": [
+      500000
+    ]
+  }
+}

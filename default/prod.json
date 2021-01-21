@@ -1,0 +1,40 @@
+{
+  "ff": {
+    "use_modified_CMAP": true,
+    "toppar": [
+      "ff/c36m.CMAPmod.hv/c36m_ecmap.prm",
+      "ff/c36m.CMAPmod.hv/c36m_ecmap.rtf",
+      "ff/c36m.CMAPmod.hv/toppar_water_ions.str",
+      "ff/c36m.CMAPmod.hv/toppar_ions_won.str"
+    ],
+    "cgenff": [
+      "ff/cgenff.hv/top_all36_cgenff.rtf",
+      "ff/cgenff.hv/par_all36_cgenff.prm"
+    ]
+  },
+  "openmm": {
+    "platform": null
+  },
+  "md": {
+    "dyntstep": 0.004,
+    "dyntemp": 360.0,
+    "lang": true,
+    "langfbeta": 0.01,
+    "dynoutfrq": 12500,
+    "dynsteps": 2500000,
+    "time_limit": 129600.0,
+    "iter": 10
+  },
+  "restart": true,
+  "restraint": {
+    "mode": "dual.anneal",
+    "distance": [
+      0.05,
+      2.0
+    ],
+    "Cartesian": [
+      0.025,
+      4.0
+    ]
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "ff": {
+    "toppar": [
+      "ff/c36m/par_all36m_prot.prm",
+      "ff/c36m/top_all36_prot.rtf",
+      "ff/c36m/toppar_water_ions.str",
+      "ff/c36m/toppar_ions_won.str"
+    ],
+    "cgenff": [
+      "ff/cgenff/top_all36_cgenff.rtf",
+      "ff/cgenff/par_all36_cgenff.prm"
+    ]
+  },
+  "openmm": {
+    "platform": null
+  },
+  "md": {
+    "dyntstep": 0.002,
+    "dyntemp": 298.15,
+    "lang": true,
+    "langfbeta": 0.01,
+    "ion_conc": 0.0,
+    "solvate": 9.0,
+    "heat": [
+      20000,
+      50.0,
+      25.0
+    ],
+    "equil": [
+      500000
+    ],
+    "prod": [
+      2,
+      2500000,
+      25000
+    ],
+    "time_limit": 7200.0,
+    "force_const": 0.0
+  }
+}
