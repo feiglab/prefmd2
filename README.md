@@ -30,7 +30,7 @@ Make sure to install these Python libraries.
     * Role in the pipeline: performing template-based 3D modeling in the *multiple initial models* mode.
 
 ### 1.2 Required third-party programs
-Make sure to install these dependencies and to set the required environmental variables (as explained in the **Configuration** sections).
+Make sure to install these dependencies and to set the required environmental variables (as explained in the **Configuration** sections). The `.bashrc` files in the `default` directory of this repository give an example of what your environmental variables should look like.
 
 #### 1.2.a Basic requirements
   * **CHARMM**
