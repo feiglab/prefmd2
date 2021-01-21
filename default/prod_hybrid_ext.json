@@ -2,14 +2,14 @@
   "ff": {
     "use_modified_CMAP": true,
     "toppar": [
-      "ff/c36m.CMAPmod.hv/c36m_ecmap.prm",
-      "ff/c36m.CMAPmod.hv/c36m_ecmap.rtf",
-      "ff/c36m.CMAPmod.hv/toppar_water_ions.str",
-      "ff/c36m.CMAPmod.hv/toppar_ions_won.str"
+      null,
+      null,
+      null,
+      null
     ],
     "cgenff": [
-      "ff/cgenff.hv/top_all36_cgenff.rtf",
-      "ff/cgenff.hv/par_all36_cgenff.prm"
+      null,
+      null
     ]
   },
   "openmm": {

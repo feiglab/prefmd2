@@ -258,8 +258,10 @@ def main(args=None):
                               outfile=fout,
                               stdout=True, errfile=errfile)
         # First run HHsuite tools to identify some templates.
+        print("- Running HHsuite to search for templates...")
         selected = run_hhsuite(homolog_home, id, fa_fn, input_pdb, n_proc)
         # The build template-based models with MODELLER.
+        print("- Building homology models with MODELLER...")
         model_s, tm_s = run_modeller(homolog_home, id, fa_fn, input_pdb,
                                      selected, n_proc)
         #

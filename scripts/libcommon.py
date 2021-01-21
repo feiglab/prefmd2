@@ -30,8 +30,33 @@ EXEC_HOME = os.path.join(WORK_HOME, "scripts")
 DEFAULT_HOME = os.path.join(WORK_HOME, 'default')
 DATA_HOME = os.path.join(WORK_HOME, 'data')
 
-def complete_data_paths(params):
-    return [os.path.join(DATA_HOME, p) for p in params]
+
+def get_c36m_paths():
+    prm_fp = os.environ["PREFMD2_FF_PARAMETER"]
+    rtf_fp = os.environ["PREFMD2_FF_TOPOLOGY"]
+    wi_str_fp = os.environ["PREFMD2_FF_WATER_IONS"]
+    fp_list = [prm_fp,
+               rtf_fp,
+               wi_str_fp]
+    _add_is_str_fp(fp_list)
+    return fp_list
+
+def get_c36m_cmapmod_paths():
+    prm_fp = "ff/c36m.CMAPmod.hv/c36m_ecmap.prm"
+    rtf_fp = "ff/c36m.CMAPmod.hv/c36m_ecmap.rtf"
+    wi_str_fp = "ff/c36m.CMAPmod.hv/toppar_water_ions.str"
+    fp_list = [os.path.join(DATA_HOME, prm_fp),
+               os.path.join(DATA_HOME, rtf_fp),
+               os.path.join(DATA_HOME, wi_str_fp)]
+    _add_is_str_fp(fp_list)
+    return fp_list
+
+def _add_is_str_fp(fp_list):
+    is_str_fp = None
+    if is_str_fp is not None:
+        fp_list.append(is_str_fp)
+    return fp_list
+
 
 def update_verbosity_env(verbose):
     if verbose:
@@ -45,11 +70,14 @@ def get_verbosity():
     else:
         return False
 
-def get_stderr():
+def get_stderr(get_fh=False):
     if get_verbosity():
         return None
     else:
-        return "/dev/null"
+        if not get_fh:
+            return "/dev/null"
+        else:
+            return sp.DEVNULL
 
 def print_tasks_to_run_message(task_s, task_name):
     print("- A total of %s %s tasks will be run." % (len(task_s), task_name))
@@ -542,6 +570,19 @@ def check_dependencies(check_hybrid=False):
         raise EnvironmentError("$CHARMMEXEC environmental variable is not"
             " defined. Please make sure to install CHARMM and define"
             " $CHARMMEXEC as the path of the executable file of CHARMM.")
+    if verbose:
+        print("* Checking force field toppar files")
+    for var_name in ("PREFMD2_FF_PARAMETER",
+                     "PREFMD2_FF_TOPOLOGY",
+                     "PREFMD2_FF_WATER_IONS"):
+        var = os.getenv(var_name)
+        if verbose:
+            print("    - Checking $%s:" % var_name, var)
+        if var is None:
+            raise EnvironmentError("${} environmental variable is not"
+                " defined. Please make sure to obtain force field files (for"
+                " information see the README.md file in this package) and"
+                " define the ${} variable.".format(var_name, var_name))
 
     # Check MMTSB.
     MMTSBDIR = os.getenv("MMTSBDIR")

@@ -1,14 +1,14 @@
 {
   "ff": {
     "toppar": [
-      "ff/c36m/par_all36m_prot.prm",
-      "ff/c36m/top_all36_prot.rtf",
-      "ff/c36m/toppar_water_ions.str",
-      "ff/c36m/toppar_ions_won.str"
+      null,
+      null,
+      null,
+      null
     ],
     "cgenff": [
-      "ff/cgenff/top_all36_cgenff.rtf",
-      "ff/cgenff/par_all36_cgenff.prm"
+      null,
+      null
     ]
   },
   "openmm": {

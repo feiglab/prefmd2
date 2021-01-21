@@ -13,6 +13,12 @@ export PATH="$MMTSBDIR/bin:$MMTSBDIR/perl:$PATH"
 # CHARMM.
 export CHARMMEXEC="/apps/charmm/bin/charmm"
 export CHARMMDATA="$MMTSBDIR/data/charmm"
+# Paths of the force fields used in the averaging and quality assessment MD
+# runs, assuming you want to use CHARMM36m and that your CHARMM installation is
+# in the $HOME/apps/charmm directory.
+export PREFMD2_FF_PARAMETER="$HOME/apps/charmm/toppar/par_all36_prot.prm"
+export PREFMD2_FF_TOPOLOGY="$HOME/apps/charmm/toppar/top_all36_prot.rtf"
+export PREFMD2_FF_WATER_IONS="$HOME/apps/charmm/toppar/toppar_water_ions.str"
 
 # locPREFMD.
 export LOCPREFMD="$HOME/apps/locprefmd"

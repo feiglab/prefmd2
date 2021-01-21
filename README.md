@@ -101,16 +101,28 @@ Make sure to install these dependencies and to set the required environmental va
     * Role in the pipeline: used to parallelize the Iterative hybridize protocol of Rosetta.
 
 ## 2. Obtaining and configuring PREFMD2
+### 2.1 Getting PREFMD2
 Once you have installed the required PREFMD2 dependencies, clone the PREFMD2 GitHub repository on your system. Run:
 
 	git clone https://github.com/feiglab/prefmd2.git
 
 Then set the following environmental variable:
 
-* `PREFMD2_HOME`: this should be the path of the PREFMD2 directory that you cloned on your system.
+  * `PREFMD2_HOME`: this should be the path of the PREFMD2 directory that you cloned on your system.
+
+### 2.2 Preparing force field files
+PREFMD2 uses for the MD runs in the main sampling stage and its preceding equilibration a modified version of the CHARMM36m force field. The files for this force field are provided in this repository.
+
+For the relaxation of averaged structures and model quality assessment steps, the original version of CHARMM36m is used. The files for this force field are NOT provided in this repository. In order to use PREFMD2, you will need to provide your own CHARMM36m force field files, which are available from the CHARMM distribution (in the `toppar` directory). Note that CHARMM provides protein force field files separately from water and ions. In order to use PREFMD2 you will need to specify the following three environmental variables:
+
+  * `$PREFMD2_FF_PARAMETER`: path to the parameter file of the selected force field, for example `$HOME/apps/charmm/toppar/par_all36_prot.prm` (assuming that your CHARMM installation is in `$HOME/apps/charmm`).
+  * `$PREFMD2_FF_TOPOLOGY`: path to the topology file of the selected force field, for example `$HOME/apps/charmm/toppar/top_all36_prot.rtf`.
+  * `$PREFMD2_FF_WATER_IONS`: path to the water and ions parameter file of the selected force field, for example `$HOME/apps/charmm/toppar/toppar_water_ions.str`.
+
+Although in principle any force field can be used in PREFMD2, we recommend the CHARMM36m force field.
 
 ## 3. How to use PREFMD2
-### 3.2 Basic usage
+### 3.1 Basic usage
 Prepare an input protein structure in PDB format. Then run:
 
     python $PREFMD2_HOME/scripts/prefmd2.py -t my_refinement_job -i input.pdb

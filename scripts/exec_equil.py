@@ -44,8 +44,9 @@ def equil_md(output_prefix, solv_fn, psf_fn, crd_fn, options, verbose):
     #
     ff_file_s = options['ff']['toppar']
     if 'ligand' in options and len(options['ligand']['str_fn_s']) > 0:
-        ff_file_s.extend(options['ff']['cgenff'])
-        ff_file_s.extend([fn.short() for fn in options['ligand']['str_fn_s']])
+        # ff_file_s.extend(options['ff']['cgenff'])
+        # ff_file_s.extend([fn.short() for fn in options['ligand']['str_fn_s']])
+        raise NotImplementedError("Ligands.")
 
     ff = CharmmParameterSet(*ff_file_s)
     platform = Platform.getPlatformByName(options['openmm']['platform'])

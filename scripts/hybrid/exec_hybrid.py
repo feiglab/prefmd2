@@ -23,12 +23,14 @@ EXTENSION = os.getenv("ROSETTA_EXTENSION", "linuxgccrelease")
 
 
 def run(arg):
-    model_summary = path.Path("model_s")
 
+    model_summary = path.Path("model_s")
     original_cwd = os.getcwd()
 
     # Prepare hybridization: search for templates using HHsuite, select the
     # templates and build 3D models with MODELLER.
+    print(("- Attempting to build template-based models with HHsuite and"
+           " MODELLER..."))
     model_NA = path.Path("hybrid/DONE")
     model_list = path.Path("hybrid/init_s")
     cmd = [arg.output_prefix, arg.init_pdb.short(), str(arg.n_proc)]
@@ -43,6 +45,7 @@ def run(arg):
     # Run hybridization.
     sel_s = path.Path.glob("hybrid/iter_*/sel.out")
     if len(sel_s) < 10:
+        print("- Starting hybridization using Rosetta...")
         cmd = [model_list.short(), '%d'%arg.n_proc]
         libcommon.asystem(module="hybrid.exec_run_hybrid", args=cmd)
 
@@ -57,6 +60,7 @@ def run(arg):
         return
 
     # Extract hybridization output.
+    print("- Extracting hybridization output...")
     final = sorted(sel_s, key=lambda x: int(x.split("/")[-2].split("_")[-1]))[-1]
     model_home = path.Dir("model", build=True)
     model_home.chdir()

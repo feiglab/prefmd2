@@ -2,7 +2,6 @@ import libcommon
 
 
 METHOD = 'hybrid'
-EXEC = '%s/exec_hybrid.py'%libcommon.EXEC_HOME
 
 
 def prep(job, input_pdb):
@@ -27,15 +26,19 @@ def run(job):
     """
 
     task_s = libcommon.get_tasks_to_run(job, method=METHOD)
+    libcommon.print_tasks_to_run_message(task_s, "hybridization")
 
     #
     for index, task in task_s:
+        #
+        print("- Running hybridization task %s..." % (index+1))
+        #
         title = task['input'][0]
         input_pdb = task['input'][1]
         run_home = task['input'][2]
         output_list = task['output'][0]
         log_p = task['log'][0]
-
+        #
         n_proc = task['_resource']['n_proc']
         #
         run_home.chdir()

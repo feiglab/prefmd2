@@ -104,8 +104,9 @@ def generate_PSF(output_prefix, solv_fn, options, verbose, fix_crd=True):
         cmd.append("--patch")
         cmd.extend(options['ff']['patch'])
     if 'ligand' in options and len(options['ligand']['str_fn_s']) > 0:
-        cmd.extend(options['ff']['cgenff'])
-        cmd.extend([fn.short() for fn in options['ligand']['str_fn_s']])
+        # cmd.extend(options['ff']['cgenff'])
+        # cmd.extend([fn.short() for fn in options['ligand']['str_fn_s']])
+        raise NotImplementedError("Ligands.")
     libcommon.asystem(module="exec_genPSF", args=cmd)
     #**************************************************************************
     # Fix the crd file, since OpenMM has troubles with crd files with too many

@@ -142,10 +142,8 @@ def run_tasks(job, task_s):
         options['gpu_id'] = task['_resource']['gpu_id']
         #
         #
-        options['ff']['toppar'] = libcommon.complete_data_paths(
-                                      options['ff']['toppar'])
-        options['ff']['cgenff'] = libcommon.complete_data_paths(
-                                      options['ff']['cgenff'])
+        options['ff']['toppar'] = libcommon.get_c36m_paths()
+        options['ff']['cgenff'] = None
         #
         job.average_home.chdir()
         #
