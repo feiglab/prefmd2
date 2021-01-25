@@ -99,10 +99,13 @@ TBM_EXCLUDE = None  # '%s/exclude.casp13' % DEFAULT_HOME
 class GracefulExit(Exception):
     pass
 
-def listen_signal():
-    def gracefulExit(*arg):
-        raise GracefulExit()
-    signal.signal(signal.SIGTERM, gracefulExit)
+def gracefulExit(*arg):
+    raise GracefulExit()
+
+# def listen_signal():
+#     def gracefulExit(*arg):
+#         raise GracefulExit()
+#     signal.signal(signal.SIGTERM, gracefulExit)
 
 
 def asystem(module, args, func="main",
@@ -159,7 +162,10 @@ def system(cmd, stdout=False, stdin=None, outfile=None, errfile=None):
     else:
         STDERR = errfile
     #
-    listen_signal()
+    # listen_signal()
+    #
+    original_sigterm_handler = signal.getsignal(signal.SIGTERM)
+    signal.signal(signal.SIGTERM, gracefulExit)
     #
     proc_output = None
     try:
@@ -170,6 +176,7 @@ def system(cmd, stdout=False, stdin=None, outfile=None, errfile=None):
         #print ("killing... %d"%proc.pid)
         proc.terminate()
         sys.exit()
+    signal.signal(signal.SIGTERM, original_sigterm_handler)
     if proc.returncode != 0:
         raise Exception("Error encountered in child process (%s): %s" % (
                         proc.returncode, proc.errors))

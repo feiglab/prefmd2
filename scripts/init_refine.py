@@ -71,6 +71,50 @@ def prep(arg):
     with out.open("wt") as fout:
         fout.write(output)
 
+    has_hydrogens, pdb_lines_renum = delete_hydrogens(out.path())
+    if has_hydrogens:
+        # Structures with hydrogens will cause problems in later stages.
+        print("- Removing hydrogens from the initial model...")
+        with out.open("wt") as fout:
+            fout.writelines(pdb_lines_renum)
+
     job.init_pdb = [out]
     job.to_json()
     return job
+
+
+def delete_hydrogens(in_filepath, out_filepath=None):
+
+    atom_lines = []
+    found_h = False
+    with open(in_filepath, "r") as i_fh:
+        for line in i_fh:
+            if line.startswith(("ATOM", "HETATM")):
+                atm_type = line[11:16].replace(" ", "")
+                if atm_type[0] == "H":
+                    found_h = True
+                    continue
+                resname = line[17:20]
+                if resname in ("HSP", "HSD"):
+                    _line = line[:17] + "HIS" + line[20:]
+                else:
+                    _line = line
+                atom_lines.append(_line)
+
+    if found_h:
+        atom_lines_renum = []
+        for i, line in enumerate(atom_lines):
+            # print("---")
+            # print(line)
+            atm_serial = int(line[5:11].replace(" ", ""))
+            line_renum = line[:5] + str(i+1).rjust(6) + line[11:]
+            # print(line_renum)
+            atom_lines_renum.append(line_renum)
+    else:
+        atom_lines_renum = atom_lines
+
+    if out_filepath is not None:
+        with open(out_filepath, "w") as o_fh:
+            o_fh.writelines(atom_lines_renum)
+
+    return found_h, atom_lines_renum
