@@ -145,7 +145,7 @@ This will run the default *single initial model* mode. `-t` is the name of the r
 * 1/21/2020: set up the repository.
 
 ## 5. References
-TODO
+* Heo L, Arbour CF, Janson G, Feig M. Improved Sampling Strategies for Protein Model Refinement Based on Molecular Dynamics Simulation. J Chem Theory Comput (2021) Feb 9. PMID: [33562962](https://pubmed.ncbi.nlm.nih.gov/33562962/).
 
 ## 6. Contact
 mfeiglab@gmail.com
