@@ -84,7 +84,7 @@ if os.getenv("PREFMD2_TEST") == "1":
     print("* Test mode is active")
 
 if arg.check:
-    libcommon.check_dependencies(check_hybrid=cmd.use_hybrid)
+    libcommon.check_dependencies(check_hybrid=arg.use_hybrid)
     print("- All dependencies are satisfied and the PREFMD2 environment is"
           " ready.")
     sys.exit(0)
